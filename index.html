@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>転職アンケートフォーム</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #E3F2FD 0%, #FFE5B4 50%, #F3E5F5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1976D2 0%, #FF9F5A 100%);
+            padding: 50px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .intro h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .intro p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .forms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .form-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid #e8e8e8;
+        }
+
+        .form-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-card.nurse {
+            border-top: 4px solid #1976D2;
+        }
+
+        .form-card.childcare {
+            border-top: 4px solid #FF9F5A;
+        }
+
+        .form-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .form-card h3 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .form-card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-nurse {
+            background: linear-gradient(135deg, #1976D2 0%, #0D47A1 100%);
+            color: white;
+        }
+
+        .btn-nurse:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(25, 118, 210, 0.3);
+        }
+
+        .btn-childcare {
+            background: linear-gradient(135deg, #FF9F5A 0%, #FF6B9D 100%);
+            color: white;
+        }
+
+        .btn-childcare:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 159, 90, 0.3);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #e8e8e8;
+            color: #999;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .header p {
+                font-size: 16px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .forms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 転職アンケートフォーム 🎉</h1>
+            <p>あなたのキャリアをサポートするための情報をお聞かせください</p>
+        </div>
+
+        <div class="content">
+            <div class="intro">
+                <h2>ご利用される職種を選択してください</h2>
+                <p>該当するアンケートフォームをお選びいただき、必要事項をご記入ください。<br>
+                いただいた情報をもとに、あなたにぴったりなお仕事をご提案いたします。</p>
+            </div>
+
+            <div class="forms-grid">
+                <div class="form-card nurse">
+                    <div class="form-icon">🩺</div>
+                    <h3>看護師向けアンケート</h3>
+                    <p>看護師の転職をお考えの方向けのアンケートフォームです。ご希望の条件や経歴をお聞かせください。</p>
+                    <a href="nurse.html" class="btn btn-nurse">📝 看護師フォームへ</a>
+                </div>
+
+                <div class="form-card childcare">
+                    <div class="form-icon">👶</div>
+                    <h3>保育士向けアンケート</h3>
+                    <p>保育士の転職をお考えの方向けのアンケートフォームです。ご希望の条件や経歴をお聞かせください。</p>
+                    <a href="childcare.html" class="btn btn-childcare">📝 保育士フォームへ</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>ご記入いただきありがとうございます。<br>
+            CAがあなたにぴったりなお仕事をお探しいたします。<br>
+            ご不明な点があれば、いつでもお気軽にお問い合わせください！</p>
+        </div>
+    </div>
+</body>
+</html>

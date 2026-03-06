@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>看護師向け転職アンケートフォーム</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #E3F2FD 0%, #F3E5F5 50%, #E0F2F1 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1976D2 0%, #0D47A1 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .form-content {
+            padding: 40px 30px;
+        }
+
+        .intro-message {
+            background: linear-gradient(135deg, #E3F2FD 0%, #F3E5F5 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-left: 4px solid #1976D2;
+        }
+
+        .intro-message p {
+            color: #333;
+            font-size: 15px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group .label-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #1976D2 0%, #0D47A1 100%);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: 700;
+            margin-right: 8px;
+            font-size: 14px;
+        }
+
+        .form-group .label-text {
+            display: inline;
+        }
+
+        .optional {
+            font-size: 13px;
+            color: #999;
+            font-weight: 400;
+            margin-left: 8px;
+        }
+
+        .required {
+            color: #4A90E2;
+            font-weight: 600;
+            margin-left: 4px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #E8E8E8;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: 'Noto Sans JP', sans-serif;
+            transition: all 0.3s ease;
+            background: #FAFAFA;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group input[type="tel"]:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4A90E2;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .checkbox-item input[type="checkbox"],
+        .radio-item input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #1976D2;
+            flex-shrink: 0;
+        }
+
+        .checkbox-item label,
+        .radio-item label {
+            margin: 0;
+            font-weight: 400;
+            cursor: pointer;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .sub-items {
+            margin-left: 28px;
+            margin-top: 10px;
+            padding-left: 10px;
+            border-left: 2px solid #D4E8FF;
+        }
+
+        .sub-items .form-group {
+            margin-bottom: 15px;
+        }
+
+        .sub-items label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .sub-items input[type="text"] {
+            padding: 10px 12px;
+            font-size: 14px;
+        }
+
+        .hidden-field {
+            display: none;
+            margin-left: 28px;
+            margin-top: 10px;
+            padding: 15px;
+            background: #E3F2FD;
+            border-radius: 10px;
+            border-left: 3px solid #1976D2;
+        }
+
+        .hidden-field.show {
+            display: block;
+        }
+
+        .hidden-field label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .hidden-field input[type="text"] {
+            padding: 10px 12px;
+            font-size: 14px;
+        }
+
+        .hint {
+            font-size: 13px;
+            color: #999;
+            margin-top: 6px;
+            font-weight: 400;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #1976D2 0%, #0D47A1 100%);
+            color: white;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(25, 118, 210, 0.3);
+        }
+
+        .required-note {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .btn-reset {
+            background: #F0F0F0;
+            color: #666;
+        }
+
+        .btn-reset:hover {
+            background: #E8E8E8;
+        }
+
+        .footer-message {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #E8E8E8;
+            color: #999;
+            font-size: 13px;
+        }
+
+        .required-note {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #999;
+        }
+
+        @media (max-width: 600px) {
+            .form-content {
+                padding: 25px 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 看護師向け転職アンケート 🎉</h1>
+            <p>あなたのキャリアをサポートするための情報をお聞かせください</p>
+        </div>
+
+        <form class="form-content" id="transferForm">
+            <div class="intro-message">
+                <p>こんにちは！このアンケートにご記入いただくことで、あなたにぴったりなお仕事をご提案できます。気軽にお答えください。ご不明な点があれば、いつでもお気軽にお問い合わせください！</p>
+            </div>
+
+            <div class="required-note">
+                <span style="color: #1976D2; font-weight: 600;">*</span> は必須項目です
+            </div>
+
+            <!-- 記入者の名前 -->
+            <div class="form-group">
+                <label>
+                    <span class="label-text" style="font-weight: 600; color: #1976D2;">記入者のお名前</span>
+                    <span class="required">*</span>
+                </label>
+                <input type="text" name="name" placeholder="例：山田太郎" required>
+                <div class="hint">CAがご連絡させていただく際に使用させていただきます。</div>
+            </div>
+
+            <!-- 年齢 -->
+            <div class="form-group">
+                <label>
+                    <span class="label-text" style="font-weight: 600; color: #1976D2;">年齢</span>
+                    <span class="required">*</span>
+                </label>
+                <input type="number" name="age" placeholder="例：28" min="18" max="70" required style="width: 160px;">
+                <span style="margin-left: 10px; font-size: 15px; color: #555;">歳</span>
+                <div class="hint">ご年齢をご入力ください。</div>
+            </div>
+
+            <!-- ① 転職のきっかけ -->
+            <div class="form-group">
+                <label>
+                    <span class="label-number">①</span>
+                    <span class="label-text">転職のきっかけ</span>
+                    <span class="optional">（複数選択可）</span>
+                </label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="trigger1" name="trigger" value="給与・待遇">
+                        <label for="trigger1">給与・待遇の改善</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="trigger2" name="trigger" value="職場環境">
+                        <label for="trigger2">職場環境・人間関係</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="trigger3" name="trigger" value="キャリア">
+                        <label for="trigger3">キャリアアップ・スキルアップ</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="trigger4" name="trigger" value="ワークライフバランス">
+                        <label for="trigger4">ワークライフバランスの改善</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="trigger5" name="trigger" value="夜勤負担">
+                        <label for="trigger5">夜勤負担の軽減</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="trigger6" name="trigger" value="その他">
+                        <label for="trigger6">その他</label>
+                    </div>
+                </div>
+                <div class="hint">複数選択可能です。当てはまるものをすべてお選びください。</div>
+            </div>
+
+            <!-- ② マスト条件 -->
+            <div class="form-group">
+                <label>
+                    <span class="label-number">②</span>
+                    <span class="label-text">マスト条件</span>
+                    <span class="optional">（必ず満たしたい条件）</span>
+                </label>
+                <div class="sub-items">
+                    <div class="form-group">
+                        <label style="font-weight: 500;">1. 条件</label>
+                        <input type="text" name="must1" placeholder="例：給与は月30万円以上">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-weight: 500;">2. 条件</label>
+                        <input type="text" name="must2" placeholder="例：夜勤なし">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-weight: 500;">3. 条件</label>
+                        <input type="text" name="must3" placeholder="例：駅から徒歩10分以内">
+                    </div>
+                </div>
+                <div class="hint">ご希望の条件を3つまでお書きください。</div>
+            </div>
+
+            <!-- ③ 希望施設 -->
+            <div class="form-group">
+                <label>
+                    <span class="label-number">③</span>
+                    <span class="label-text">希望施設・職場</span>
+                    <span class="optional">（複数選択可）</span>
+                </label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="facility1" name="facility" value="総合病院">
+                        <label for="facility1">総合病院</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="facility2" name="facility" value="一般病院">
+                        <label for="facility2">一般病院</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="facility3" name="facility" value="クリニック">
+                        <label for="facility3">クリニック</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="facility4" name="facility" value="介護施設">
+                        <label for="facility4">介護施設</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="facility5" name="facility" value="訪問看護">
+                        <label for="facility5">訪問看護</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="facility6" name="facility" value="企業内医務室">
+                        <label for="facility6">企業内医務室</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="facility7" name="facility" value="特に希望なし">
+                        <label for="facility7">特に希望なし</label>
+                    </div>
+                </div>
+                <div class="sub-items">
+                    <label style="font-weight: 600; color: #333; margin-bottom: 8px;">その他の希望施設（あれば）</label>
+                    <input type="text" name="other_facility" placeholder="例：診療所、保健センター、学校保健室など">
+                </div>
+            </div>
+
+            <!-- ④ 隣用形态 -->
+            <div class="form-group">
+                <label>
+                    <span class="label-number">④</span>
+                    <span class="label-text">ご希望の雇用形態</span>
+                    <span class="required">*</span>
+                </label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="employment1" name="employment" value="正社員" required>
+                        <label for="employment1">正社員</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="employment2" name="employment" value="契約社員">
+                        <label for="employment2">契約社員</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="employment3" name="employment" value="パート・アルバイト">
+                        <label for="employment3">パート・アルバイト</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="employment4" name="employment" value="複数希望">
+                        <label for="employment4">複数希望</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ⑤ 夜勤可否 -->
+            <div class="form-group">
+                <label>
+                    <span class="label-number">⑤</span>
+                    <span class="label-text">夜勤について</span>
+                    <span class="required">*</span>
+                </label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="nightshift1" name="nightshift" value="夜勤可能" required>
+                        <label for="nightshift1">夜勤可能</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="nightshift2" name="nightshift" value="夜勤なし希望">
+                        <label for="nightshift2">夜勤なし希望</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="nightshift3" name="nightshift" value="相談可能" onchange="toggleNightshiftDetails()">
+                        <label for="nightshift3">相談可能</label>
+                    </div>
+                </div>
+                <div id="nightshiftDetails" class="hidden-field">
+                    <label>夜勤の詳細（例：月2回程度、週1回まで、など）</label>
+                    <input type="text" name="nightshift_details" placeholder="例：月2回程度、または週1回まで">
+                </div>
+                <div class="hint">夜勤の可否についてお聞かせください。</div>
+            </div>
+
+            <!-- ⑥ 休日、土日出勤可否 -->
+            <div class="form-group">
+                <label>
+                    <span class="label-number">⑥</span>
+                    <span class="label-text">休日、土日出勤可否</span>
+                    <span class="required">*</span>
+                </label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="weekend1" name="weekend" value="土日休み希望" required>
+                        <label for="weekend1">土日休み希望</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="weekend2" name="weekend" value="土日出勤可能">
+                        <label for="weekend2">土日出勤可能</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="weekend3" name="weekend" value="相談可能" onchange="toggleWeekendDetails()">
+                        <label for="weekend3">相談可能</label>
+                    </div>
+                </div>
+                <div id="weekendDetails" class="hidden-field">
+                    <label>土曜日出勤の詳細（例：月2回、週1回など）</label>
+                    <input type="text" name="weekend_details" placeholder="例：月2回程度、または週1回まで">
+                </div>
+                <div class="hint">シフト制の施設もあります。ご希望をお聞かせください。</div>
+            </div>
+
+            <!-- ⑦ 現職年収 -->
+            <div class="form-group">
+                <label>
+                    <span class="label-number">⑦</span>
+                    <span class="label-text">現職年収</span>
+                    <span class="optional">（参考情報）</span>
+                </label>
+                <input type="text" name="salary" placeholder="例：450万円">
+                <div class="hint">給与交渉の参考にさせていただきます。</div>
+            </div>
+
+            <!-- ⑧ 通勤可能エリア -->
+            <div class="form-group">
+                <label>
+                    <span class="label-number">⑧</span>
+                    <span class="label-text">通勤可能エリア</span>
+                    <span class="required">*</span>
+                </label>
+                <input type="text" name="commute" placeholder="例：渋谷区、新宿区、品川区 / 駅から15分以内" required>
+                <div class="hint">複数のエリアをお書きいただいても大丈夫です。</div>
+            </div>
+
+            <!-- ⑨ 新卒からのご経歴 -->
+            <div class="form-group">
+                <label>
+                    <span class="label-number">⑨</span>
+                    <span class="label-text">新卒からのご経歴</span>
+                    <span class="required">*</span>
+                </label>
+                <textarea name="career" placeholder="例：2015年に新卒で〇〇病院に入職。2020年に〇〇クリニックに転職。現在まで勤務中。" required></textarea>
+                <div class="hint">職歴をお書きください。転職回数や理由も参考になります。</div>
+            </div>
+
+            <!-- ⑩ 面接可能日時 -->
+            <div class="form-group">
+                <label>
+                    <span class="label-number">⑩</span>
+                    <span class="label-text">面接可能日時</span>
+                    <span class="required">*</span>
+                </label>
+                <textarea name="interview_time" placeholder="例：平日の夜間19時以降、土曜日の午前中" required></textarea>
+                <div class="hint">ご都合のつく日時をお書きください。</div>
+            </div>
+
+            <!-- ⑪ 転職タイミング -->
+            <div class="form-group">
+                <label>
+                    <span class="label-number">⑪</span>
+                    <span class="label-text">転職タイミング</span>
+                    <span class="required">*</span>
+                </label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="timing1" name="timing" value="すぐに転職したい" required>
+                        <label for="timing1">すぐに転職したい（1ヶ月以内）</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="timing2" name="timing" value="2～3ヶ月以内">
+                        <label for="timing2">2～3ヶ月以内</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="timing3" name="timing" value="3～6ヶ月以内">
+                        <label for="timing3">3～6ヶ月以内</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="timing4" name="timing" value="6ヶ月以上先">
+                        <label for="timing4">6ヶ月以上先</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="timing5" name="timing" value="未定">
+                        <label for="timing5">未定</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ⑫ 資格 -->
+            <div class="form-group">
+                <label>
+                    <span class="label-number">⑫</span>
+                    <span class="label-text">資格</span>
+                    <span class="optional">（複数選択可）</span>
+                </label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="license1" name="license" value="看護師資格">
+                        <label for="license1">看護師資格</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="license2" name="license" value="准看護師資格">
+                        <label for="license2">准看護師資格</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="license3" name="license" value="助産師資格">
+                        <label for="license3">助産師資格</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="license4" name="license" value="保健師資格">
+                        <label for="license4">保健師資格</label>
+                    </div>
+                </div>
+                <div class="sub-items">
+                    <label style="font-weight: 600; color: #333; margin-bottom: 8px;">その他の資格（あれば）</label>
+                    <input type="text" name="other_license" placeholder="例：認定看護師、専門看護師、ケアマネージャーなど">
+                </div>
+            </div>
+
+            <!-- ⑬ 気になる求人 -->
+            <div class="form-group">
+                <label>
+                    <span class="label-number">⑬</span>
+                    <span class="label-text">気になる求人 / ご自身で既にご応募している求人</span>
+                    <span class="optional">（あれば）</span>
+                </label>
+                <textarea name="interested_jobs" placeholder="例：〇〇病院、〇〇クリニックなど、気になる施設や求人情報をお書きください。"></textarea>
+                <div class="hint">既にご応募されている求人があれば、その情報も教えてください。</div>
+            </div>
+
+            <!-- ⑭ NG求人 -->
+            <div class="form-group">
+                <label>
+                    <span class="label-number">⑭</span>
+                    <span class="label-text">NG求人</span>
+                    <span class="optional">（避けたい条件）</span>
+                </label>
+                <textarea name="ng_jobs" placeholder="例：夜勤が多い施設、残業が多い職場など、避けたい条件をお書きください。"></textarea>
+                <div class="hint">ご希望に合わない求人を避けるために参考にさせていただきます。</div>
+            </div>
+
+            <!-- ⑮ 連絡しやすい時間帯 -->
+            <div class="form-group">
+                <label>
+                    <span class="label-number">⑮</span>
+                    <span class="label-text">連絡しやすい時間帯</span>
+                    <span class="required">*</span>
+                </label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="contact1" name="contact_time" value="朝8時～10時" required>
+                        <label for="contact1">朝8時～10時</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="contact2" name="contact_time" value="昼12時～14時">
+                        <label for="contact2">昼12時～14時</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="contact3" name="contact_time" value="夕方16時～18時">
+                        <label for="contact3">夕方16時～18時</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="contact4" name="contact_time" value="夜間19時～21時">
+                        <label for="contact4">夜間19時～21時</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="contact5" name="contact_time" value="いつでも大丈夫">
+                        <label for="contact5">いつでも大丈夫</label>
+                    </div>
+                </div>
+                <div class="hint">CAからのご連絡がしやすい時間帯をお選びください。</div>
+            </div>
+
+            <!-- ボタン -->
+            <div class="button-group">
+                <button type="submit" class="btn btn-submit">📤 送信する</button>
+                <button type="reset" class="btn btn-reset">🔄 リセット</button>
+            </div>
+
+            <div class="footer-message">
+                <p>ご記入いただきありがとうございます。<br>
+                CAがあなたにぴったりなお仕事をお探しいたします。<br>
+                ご不明な点があれば、いつでもお気軽にお問い合わせください！</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function toggleNightshiftDetails() {
+            const nightshiftDetails = document.getElementById('nightshiftDetails');
+            const selectedValue = document.querySelector('input[name="nightshift"]:checked').value;
+            
+            if (selectedValue === '相談可能') {
+                nightshiftDetails.classList.add('show');
+            } else {
+                nightshiftDetails.classList.remove('show');
+            }
+        }
+
+        function toggleWeekendDetails() {
+            const weekendDetails = document.getElementById('weekendDetails');
+            const selectedValue = document.querySelector('input[name="weekend"]:checked').value;
+            
+            if (selectedValue === '相談可能') {
+                weekendDetails.classList.add('show');
+            } else {
+                weekendDetails.classList.remove('show');
+            }
+        }
+
+        document.getElementById('transferForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitButton = document.querySelector('.btn-submit');
+            submitButton.disabled = true;
+            submitButton.textContent = '送信中...';
+            
+            // フォームデータを収集
+            const data = {
+                name: document.querySelector('input[name="name"]').value,
+                age: document.querySelector('input[name="age"]').value,
+                trigger: Array.from(document.querySelectorAll('input[name="trigger"]:checked')).map(cb => cb.value).join(', '),
+                must1: document.querySelector('input[name="must1"]').value,
+                must2: document.querySelector('input[name="must2"]').value,
+                must3: document.querySelector('input[name="must3"]').value,
+                facility: Array.from(document.querySelectorAll('input[name="facility"]:checked')).map(cb => cb.value).join(', '),
+                other_facility: document.querySelector('input[name="other_facility"]').value,
+                employment: document.querySelector('input[name="employment"]:checked')?.value || '',
+                nightshift: document.querySelector('input[name="nightshift"]:checked')?.value || '',
+                nightshift_details: document.querySelector('input[name="nightshift_details"]').value,
+                weekend: document.querySelector('input[name="weekend"]:checked')?.value || '',
+                weekend_details: document.querySelector('input[name="weekend_details"]').value,
+                salary: document.querySelector('input[name="salary"]').value,
+                commute: document.querySelector('input[name="commute"]').value,
+                career: document.querySelector('textarea[name="career"]').value,
+                interview_time: document.querySelector('textarea[name="interview_time"]').value,
+                timing: document.querySelector('input[name="timing"]:checked')?.value || '',
+                license: Array.from(document.querySelectorAll('input[name="license"]:checked')).map(cb => cb.value).join(', '),
+                other_license: document.querySelector('input[name="other_license"]').value,
+                interested_jobs: document.querySelector('textarea[name="interested_jobs"]').value,
+                ng_jobs: document.querySelector('textarea[name="ng_jobs"]').value,
+                contact_time: document.querySelector('input[name="contact_time"]:checked')?.value || ''
+            }
+            
+            try {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbzuuCOdZ21iGKd2wH7g5RCklohnKaG7-ZKUfQgGaPudXq8gOfeL7VS-OWHpuWltDQUJbA/exec', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                alert('アンケートを送信していただきありがとうございます！\nCAより近日中にご連絡させていただきます。');
+                e.target.reset();
+            } catch (error) {
+                alert('送信中にエラーが発生しました。もう一度お試しください。');
+                console.error('Error:', error);
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = '📤 送信する';
+            }
+        });
+
+        // ラジオボタンの変更時にチェック
+        document.querySelectorAll('input[name="nightshift"]').forEach(radio => {
+            radio.addEventListener('change', toggleNightshiftDetails);
+        });
+
+        document.querySelectorAll('input[name="weekend"]').forEach(radio => {
+            radio.addEventListener('change', toggleWeekendDetails);
+        });
+    </script>
+</body>
+</html>
